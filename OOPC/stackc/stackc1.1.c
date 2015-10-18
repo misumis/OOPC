@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 typedef struct
 {
 	int *array;
@@ -24,18 +25,18 @@ int main()
 
 	init(p);
 	bool check=isempty(p);
-	printf("Is stack empty? Let's check: %d\n",check);
+	printf("Empty: %d\n",check);
 	show(p);
 	
 	
 
-	push(p,7);
-	push(p,9);
-	push(p,0);
-	push(p,2);
 	push(p,1);
+	push(p,2);
 	push(p,3);
+	push(p,4);
 	push(p,5);
+	push(p,6);
+	push(p,7);
 	
 	show(p);
 
@@ -43,9 +44,9 @@ int main()
 	show(p);
 	
 	check=isempty(p);
-	printf("Is stack empty? Let's check: %d\n",check);	
+	printf("Empty: %d\n",check);	
 	
-	push(p,4);
+	push(p,3);
 	show(p);
 
 	pop(p);
@@ -55,15 +56,11 @@ int main()
     pop(p);
     pop(p);
     pop(p);
-    pop(p);
-    pop(p);
-    pop(p);
-    pop(p);
+   
 	
 	destroy(p);
 
-	pop(p);
-    pop(p);
+	
 
 	return 0;
 }
@@ -75,7 +72,7 @@ void init(Stack* s)
 	s->array=(int*)malloc(s->size*sizeof(int));
 	if(!(s->array))
 	{
-		printf("Allocation (init) error!\n\n");
+		printf("Allocation error!\n\n");
 		exit(1);
 	}
 }
@@ -97,7 +94,7 @@ int push(Stack* s, int element)
 		
 		if(!(s->array))
 		{
-			printf("Allocation (realloc) error!\n\n");
+			printf("Allocation error!\n\n");
 			//free(aux);
 			s->array=aux;
 			return 0;
@@ -123,7 +120,7 @@ int pop(Stack* s)
 	}
 	else
 	{	
-		printf("Popped element: %d\n",*((s->array)+(s->elements-1)));
+		printf("Pop: %d\n",*((s->array)+(s->elements-1)));
 		(s->elements)--;
 		return *((s->array)+(s->elements));
 	}	
@@ -141,11 +138,11 @@ void show(Stack* s)
 	int i;
 	if(s->elements)
 	{
-		for(i=0;i<s->elements;i++)
+		for(i = 0 ; i < s->elements ; i++)
 		{
-			printf("%d\t",*((s->array)+i));
+			printf("%d ",*((s->array)+i));
 		}	
 	}
-	else printf("The stack is empty...");
+	else printf("Empty stack!");
 	printf("\n");
 }
