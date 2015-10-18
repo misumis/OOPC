@@ -3,36 +3,21 @@
 using namespace std;
 
 class stack { 
-  char *stackData; 
+  int *stackData; 
   int topOfStack;  
   int size;        
 public:
-  stack(int s);    
-  ~stack();        
-  void push(char ch); 
-  char pop();
+  stack() {cout << "Stack Constructed\n"; }   
+  ~stack(){cout << "Stack Deconstructed\n"; }    
+  void push(int ch); 
+  int pop();
 };
 
-stack::stack(int s)
-{
-  cout << "Constructing a stack\n";
-  topOfStack = 0;
-  stackData = (char *) malloc(s);
-  if(!stackData) {
-    cout << "Allocation error\n";
-    exit(1);
-  }
-  size = s;
-}
 
-stack::~stack()
-{
-  free(stackData);
-}
-
-void stack::push(char ch)
+void stack::push(int ch)
 {
   if(topOfStack==size) {
+	*stackData=(int*)realloc(ch,(2*(size))*sizeof(int));
     cout << "Stack is full\n";
     return;
   }
@@ -40,7 +25,7 @@ void stack::push(char ch)
   topOfStack++;
 }
 
-char stack::pop()
+int stack::pop()
 {
   if(topOfStack==0) {
     cout << "Stack is empty\n";
@@ -52,20 +37,18 @@ char stack::pop()
 
 int main()
 {
-  stack stackObject1(10), stackObject2(10); 
+  stack stackObject1; 
   int i;
 
-  stackObject1.push('a');
-  stackObject2.push('x');
-  stackObject1.push('b');
-  stackObject2.push('y');
-  stackObject1.push('c');
-  stackObject2.push('z');
+  stackObject1.push(1);
+  
+  stackObject1.push(2);
+  
+  stackObject1.push(3);
+  
 
   for(i = 0; i <3; i++) 
      cout << "Pop stackObject1: " << stackObject1.pop() << endl;
-  for(i = 0; i <3; i++) 
-     cout << "Pop stackObject2: " << stackObject2.pop() << endl;
 
   return 0;
 }
