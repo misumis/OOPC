@@ -42,10 +42,10 @@ int stack::pop()
 {
   if(topOfStack==0) {
     cout << "Stack is empty\n";
-    return 0; // return null on empty stack 
+    exit(0); 
   }
   topOfStack--;
-  return stackData[topOfStack];
+  return stackData[topOfStack]+1;
 }
 
 int main()
@@ -53,11 +53,11 @@ int main()
   stack stackObject1; 
   int i;
 
-  stackObject1.push(1);
-  
   stackObject1.push(2);
   
   stackObject1.push(3);
+  
+  stackObject1.push(4);
   
 
   for(i = 0; i <3; i++) 
