@@ -7,17 +7,30 @@ class stack {
   int topOfStack;  
   int size;        
 public:
-  stack() {cout << "Stack Constructed\n"; }   
-  ~stack(){cout << "Stack Deconstructed\n"; }    
+  stack()  ;
+  ~stack() ;  
   void push(int ch); 
   int pop();
 };
 
+stack::stack()
+{
+  topOfStack=0;
+  size=2;
+  stackData =(int*) malloc( size*sizeof(int));
+}
+
+stack::~stack()
+{
+  free(stackData);
+  topOfStack=0;
+}
 
 void stack::push(int ch)
 {
   if(topOfStack==size) {
-	*stackData=(int*)realloc(ch,(2*(size))*sizeof(int));
+	size*=2;
+	stackData=(int*)realloc(stackData,((size))*sizeof(int));
     cout << "Stack is full\n";
     return;
   }
