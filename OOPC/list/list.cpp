@@ -72,7 +72,7 @@ list::list (const list & l)
       dst = &((*dst)->next);
     }
 }
-
+/*
 list & list::operator= (const list & l)
 {
   if (&l == this)
@@ -98,5 +98,37 @@ list & list::operator= (const list & l)
       src = src->next;
       dst = &((*dst)->next);
     }
+  return *this;
+}
+*/
+list & list::operator= (const list & l)
+{
+  if (&l == this)
+	return *this;
+  current=NULL;
+  node *src, **dst;
+  src = l.head;
+  dst = &head;
+ 
+  while (src)
+    {
+	  if(!*dst)
+		{
+		  *dst = new node;
+		  (*dst)->next = NULL;
+		}
+		if(src==l.current)
+		  current=*dst;
+		(*dst)->val = src->val;
+		src = src->next;
+		dst = &((*dst)->next);
+	}
+
+	  while(*dst)
+	  {
+		node *t = (*dst)->next;
+		delete *dst;
+		*dst = t;
+	  }
   return *this;
 }
