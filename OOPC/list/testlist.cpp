@@ -4,7 +4,7 @@ using namespace std;
 
 
 void
-PrintList (list toPrint, ostream & Out)
+PrintList (list& toPrint, ostream & Out)
 {
   int nextValue;
   Out << "Printing list contents: " << endl;
