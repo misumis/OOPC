@@ -60,6 +60,12 @@ class Complex
 	    Imag -= co.Imag;
 	    return *this;
 	};
+	Complex & operator+= (Complex co)
+	{
+	    Real += co.Real;
+	    Imag += co.Imag;
+	    return *this;
+	};
 
 	friend Complex operator- (Complex, Complex);
 	friend ostream & operator << (ostream & s, const Complex & c)
