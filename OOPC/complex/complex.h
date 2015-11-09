@@ -1,26 +1,34 @@
-#ifndef __Complex_H__
-#define __Complex_H__
 #include <iostream>
 #include <math.h>
-
 using namespace std;
-
 class Complex
 {
-    private:
+private:
 	double Real, Imag;
-    public:
-	Complex ():Real (0), Imag (0)
-    {
-    };
-
-	Complex (double co)
-	{
-	    Real = co;
-	    Imag = 0;
-	};
-
-	Complex (double Real, double Imag)
+public:
+	     Complex ():Real (0), Imag (0){};
+        Complex (double co);
+        Complex (double Real, double Imag);
+        Complex & operator= (const Complex & s);
+        Complex operator- () const;
+        Complex & operator= (double co);
+        Complex operator+ (const Complex& co) const;
+        Complex & operator-= (Complex co);
+        Complex & operator+= (Complex co);
+        friend Complex operator / (Complex c1, Complex c2);
+        friend Complex operator * (Complex c1, Complex c2);
+        friend Complex operator- (Complex, Complex);
+        friend ostream & operator << (ostream & s, const Complex & c);
+        double real(void);
+        double imaginative(void);
+        double amplitude(void);
+        double phase(void);
+        Complex conjugate(void);
+        Complex& operator *= (Complex s2);
+        Complex& operator/=(Complex co);
+        bool operator == (Complex co);
+};
+	Complex (double Real = 0, double Imag = 0)
 	{
 	    this->Real = Real;
 	    this->Imag = Imag;
@@ -54,13 +62,13 @@ class Complex
 	};
 
 
-	Complex & operator-= (Complex co)
+	Complex & operator-= (const Complex& co)
 	{
 	    Real -= co.Real;
 	    Imag -= co.Imag;
 	    return *this;
 	};
-	Complex & operator+= (Complex co)
+	Complex & operator+= (const Complex& co)
 	{
 	    Real += co.Real;
 	    Imag += co.Imag;
@@ -70,10 +78,10 @@ class Complex
 	friend Complex operator- (Complex, Complex);
 	friend ostream & operator << (ostream & s, const Complex & c)
 	{
-	    s << "(" << c.Real << "," << c.Imag << ")";
+	    s << "( " << c.Real << " , " << c.Imag << " )";
 	    return s;
 	};
-	//my work starts from here
+
 	double real(){
 	    return Real;
 	};
@@ -120,8 +128,9 @@ class Complex
 
 };
 
-    inline Complex
-operator - (Complex s1, Complex s2)
+
+
+inline Complex operator - (Complex s1, Complex s2)
 {
     Complex n (s1);
     return n -= s2;
@@ -138,4 +147,5 @@ Complex operator / (Complex s1, Complex s2){
     Complex n(s1);
     return n /= s2;
 }
-#endif /* __Complex_H__ */
+
+//pastebin.com/zlbUDkfw

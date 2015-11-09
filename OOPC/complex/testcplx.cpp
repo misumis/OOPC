@@ -18,10 +18,10 @@ int main()
     cout << "c -=b :" << (c -=b) <<endl;
     cout << "c +=b :" << (c +=b) <<endl;
     Complex d(13,14),j(0,1);
+	cout << "j * d : " << j * d << endl;
 	cout<<"j phase : "<<j.phase() << endl;
 	cout << "j Amplitude : " << j.amplitude() << endl;
     cout << "d:" << d << "~d:" << ~d << endl;
-	
     cout <<"a: " << a << "b: " << b << "a*b: "<< (a*b) << endl;
     cout << "d: " << d << "d*2 "<< d*2 <<endl;
     Complex e(3,2), f(1,-1);
