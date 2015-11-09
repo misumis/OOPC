@@ -74,32 +74,21 @@ class Complex
 	    return s;
 	};
 	//my work starts from here
-	double real(void){
+	double real(){
 	    return Real;
 	};
-	double imaginative(void){
+	double imaginative(){
 	    return Imag;
 	};
-	double amplitude(void){
+	double amplitude(){
 	    return sqrt(Real*Real+Imag*Imag);
 	};
-	double phase(void){
-	    if(Real > 0)
+	double phase(){
+	    
 		return atan(Imag/Real);
-	    else if(Real < 0 && Imag >= 0)
-		return atan(Imag/Real) + M_PI;
-	    else if(Real < 0 && Imag < 0)
-		return atan(Imag/Real) - M_PI;
-	    else if(Real == 0 && Imag >0)
-		return M_PI/2.0;
-	    else if(Real == 0 && Imag < 0)
-		return -M_PI;
-	    else{
-		cerr << "Cannot calculate phase" << endl;
-		return 0;
-	    }
+	    
 	};
-	Complex conjugate(void){
+	Complex conjugate(){
 	    Complex n (Real, -Imag);
 	    return n;
 	};
