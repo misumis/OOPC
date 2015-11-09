@@ -28,78 +28,81 @@ public:
         Complex& operator/=(Complex co);
         bool operator == (Complex co);
 };
-	Complex (double Real = 0, double Imag = 0)
+	Complex::Complex (double Real = 0, double Imag = 0)
 	{
 	    this->Real = Real;
 	    this->Imag = Imag;
-	};
+	}
+		
+	ostream & operator << (ostream & s, const Complex & c)
+	{
+	    s << "( " << c.Real << " , " << c.Imag << " )";
+	    return s;
+	}
 
-	Complex & operator= (const Complex & s)
+	
+	Complex::Complex & operator= (const Complex & s)
 	{
 	    Real = s.Real;
 	    Imag = s.Imag;
 	    return *this;
-	};
+	}
 
-	Complex operator- () const
+	Complex::Complex operator- () const
 	{
 	    return Complex(-Real,-Imag);
-	};
+	}
 
-	Complex & operator= (double co)
+	Complex::Complex & operator= (double co)
 	{
 	    Real = co;
 	    Imag = 0;
 	    return *this;
-	};
-
-	Complex operator+ (const Complex& co) const
+	}
+	
+	Complex::Complex operator+ (const Complex& co) const
 	{
 	    Complex n;
 	    n.Real = this->Real + co.Real;
 	    n.Imag = this->Imag + co.Imag;
 	    return n;
-	};
+	}
 
-
-	Complex & operator-= (const Complex& co)
+	Complex::Complex & operator-= (const Complex& co)
 	{
 	    Real -= co.Real;
 	    Imag -= co.Imag;
 	    return *this;
-	};
-	Complex & operator+= (const Complex& co)
+	}
+	
+	Complex::Complex & operator+= (const Complex& co)
 	{
 	    Real += co.Real;
 	    Imag += co.Imag;
 	    return *this;
-	};
+	}
 
 	friend Complex operator- (Complex, Complex);
-	friend ostream & operator << (ostream & s, const Complex & c)
-	{
-	    s << "( " << c.Real << " , " << c.Imag << " )";
-	    return s;
-	};
-
-	double real(){
+	
+	double Complex::real(){
 	    return Real;
-	};
-	double imaginative(){
+	}
+
+	double Complex::imaginative(){
 	    return Imag;
-	};
-	double amplitude(){
+	}
+	double Complex::amplitude(){
 	    return sqrt(Real*Real+Imag*Imag);
-	};
-	double phase(){
+	}
+	double Complex:: phase(){
 	    
 		return atan(Imag/Real);
 	    
-	};
-	Complex conjugate(){
+	}
+	Complex Complex:: conjugate(){
 	    Complex n (Real, -Imag);
 	    return n;
-	};
+	}
 	friend Complex operator ~(Complex s1);
 	Complex& operator *= (Complex s2){
 	    double tmpReal, tmpImag;
@@ -109,7 +112,7 @@ public:
 	    Imag = tmpImag;
 	    return * this;    
 	}
-	Complex& operator/=(Complex s1){
+	Complex::Complex& operator/=(Complex s1){
 	    double tmpReal, tmpImag;
 	    tmpReal = (Real*s1.real()+Imag*s1.imaginative())/(s1.real()*s1.real()+s1.imaginative()*s1.imaginative());
 	    tmpImag=(Imag*s1.real()-Real*s1.imaginative())/(s1.real()*s1.real()+s1.imaginative()*s1.imaginative());
@@ -117,7 +120,7 @@ public:
 	    Imag=tmpImag;
 	    return *this;
 	}
-	bool operator == (Complex s1){
+	bool Complex::operator == (Complex s1){
 	    if(Real == s1.real() && Imag == s1.imaginative()){
 		return true;
 	    }
