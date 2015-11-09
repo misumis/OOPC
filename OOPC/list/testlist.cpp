@@ -30,8 +30,37 @@ main ()
   l.insert (1);
   l.insert (2);
   l.insert (3);
+
+  
   PrintList (l, cout);
   list l2;
+  l2.insert (4);
+  l2.insert (5);
+  l2.insert (6);
+  l2.insert (7);
+  l.goToHead();
+  l.advance();
+  l.advance();
   l2=l;
+  cout<< "Pointer points to: " << l.getCurrentData()<<endl;
+  cout<< "Pointer points to: " << l2.getCurrentData()<<endl;
   PrintList (l2,cout);
+  
+  l.insert(8);
+  
+  l.goToHead();
+  l.advance();
+  l.advance();
+  l.advance();
+  l2=l;
+  cout<< "Pointer points to: " << l.getCurrentData()<<endl;
+  cout<< "Pointer points to: " << l2.getCurrentData()<<endl;
+  PrintList(l2,cout);
+  l.goToHead();
+  l.advance();
+  l.advance();
+  l2=l;
+  cout<< "Pointer points to: " << l.getCurrentData()<<endl;
+  cout<< "Pointer points to: " << l2.getCurrentData()<<endl;
+   PrintList(l2,cout);
 }
