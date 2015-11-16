@@ -6,8 +6,6 @@ class Complex
 private:
 	double Real, Imag;
 public:
-	     Complex ():Real (0), Imag (0){};
-        Complex (double co);
         Complex (double Real, double Imag);
         Complex & operator= (const Complex & s);
         Complex operator- () const;

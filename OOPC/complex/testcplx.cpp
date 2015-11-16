@@ -21,7 +21,6 @@ int main()
 	cout << "j * d : " << j * d << endl;
 	cout<<"j phase : "<<j.phase() << endl;
 	cout << "j Amplitude : " << j.amplitude() << endl;
-    cout << "d:" << d << "~d:" << ~d << endl;
     cout <<"a: " << a << "b: " << b << "a*b: "<< (a*b) << endl;
     cout << "d: " << d << "d*2 "<< d*2 <<endl;
     Complex e(3,2), f(1,-1);
@@ -29,8 +28,5 @@ int main()
     Complex g(3,2), h(3,-2);
     bool i= g==h?true:false; 
     cout << "g :" << g << "h: "<<h<<endl << "g==h? " << i<< endl;
-    i= g==(~h)?true:false;
-    cout << "g==(~h) " << i<< endl;
-    i= (~g)==h?true:false;
-    cout << "~g==h " << i << endl; 
+   
 }
