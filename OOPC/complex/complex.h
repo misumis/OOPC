@@ -5,40 +5,9 @@ using namespace std;
 	
 class Complex
 {
-<<<<<<< HEAD
-private:
-	double Real, Imag;
-public:
-        Complex (double Real, double Imag);
-        Complex & operator= (const Complex & s);
-        Complex operator- () const;
-        Complex & operator= (double co);
-        Complex operator+ (const Complex& co) const;
-        Complex & operator-= (const Complex& co);
-        Complex & operator+= (const Complex& co);
-        friend Complex operator / (Complex c1, Complex c2);
-        friend Complex operator * (Complex c1, Complex c2);
-        friend Complex operator- (Complex, Complex);
-        friend ostream & operator << (ostream & s, const Complex & c);
-        double real(void);
-        double imaginative(void);
-        double amplitude(void);
-        double phase(void);
-        Complex conjugate(void);
-        Complex& operator *= (Complex s2);
-        Complex& operator/=(Complex co);
-        bool operator == (Complex co);
-};
-	Complex::Complex (double Real = 0, double Imag = 0)
-	{
-	    this->Real = Real;
-	    this->Imag = Imag;
-	}
-=======
 	private:
 		double Real, Imag;
 	public:
->>>>>>> 5a0beb87ecdfc350f2f436956911b9fcf8ca4be0
 		
 		Complex (double Real, double Imag);
 		Complex & operator= (const Complex & s);
@@ -179,8 +148,4 @@ bool Complex::operator == (Complex co)
 		}
 }
 
-<<<<<<< HEAD
-//pastebin.com/zlbUDkfw
-=======
 
->>>>>>> 5a0beb87ecdfc350f2f436956911b9fcf8ca4be0
