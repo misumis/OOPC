@@ -11,8 +11,8 @@ public:
         Complex operator- () const;
         Complex & operator= (double co);
         Complex operator+ (const Complex& co) const;
-        Complex & operator-= (Complex co);
-        Complex & operator+= (Complex co);
+        Complex & operator-= (const Complex& co);
+        Complex & operator+= (const Complex& co);
         friend Complex operator / (Complex c1, Complex c2);
         friend Complex operator * (Complex c1, Complex c2);
         friend Complex operator- (Complex, Complex);
