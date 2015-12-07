@@ -9,27 +9,30 @@ class Wrong_Dimmension {};
 class Matrix
 {
 	class Cref;
-	public:
-		struct CMatrix;
-		CMatrix* data;
-		Matrix();
-		Matrix(unsigned int rows, unsigned int columns);
-		Matrix(const Matrix& m);
-		Matrix(istream& in);
-		~Matrix();
-		friend Matrix operator+ (Matrix& m1, Matrix& m2);
-		friend Matrix operator* (Matrix& m1, Matrix& m2);
-		friend Matrix operator- (Matrix& m1, Matrix& m2);
-		Matrix& operator*= (Matrix m);
-		Matrix& operator+= (Matrix m);
-		Matrix& operator-= (Matrix m);
-		bool operator== (Matrix& m);
-		friend ostream & operator << (ostream & s, const Matrix & m);
-		void write(unsigned int row, unsigned int col, double num);
-		double read(unsigned int row, unsigned int col);
-		void check (unsigned int row, unsigned int col);
-		Matrix& operator= (const Matrix& m);
-		Cref operator() (unsigned int a, unsigned int b);
+
+public:
+	struct CMatrix;
+	CMatrix* data;
+	Matrix();
+	Matrix(int rows,int columns);
+	Matrix(const Matrix& m);
+	Matrix(istream& in);
+	~Matrix();
+	Matrix& operator*= (Matrix m);
+	Matrix& operator+= (Matrix m);
+	Matrix& operator-= (Matrix m);
+	bool operator== (Matrix& m);
+	friend ostream & operator << (ostream & s, const Matrix & m);
+	Matrix& operator= (const Matrix& m);
+	Cref operator() (unsigned int a, unsigned int b);
+private:
+	
+	friend Matrix operator+ (const Matrix& m1, const Matrix& m2);
+	friend Matrix operator* (const Matrix& m1, const Matrix& m2);
+	friend Matrix operator- (const Matrix& m1, const Matrix& m2);
+	void write(unsigned int row, unsigned int col, double num);
+	double read(unsigned int row, unsigned int col);
+	void check (unsigned int row, unsigned int col);
 };
 
 struct Matrix::CMatrix 
@@ -39,7 +42,7 @@ struct Matrix::CMatrix
 	unsigned int Columns;
 	double** matrix;
 	
-	CMatrix(unsigned int rows, unsigned int columns)
+	CMatrix( int rows,  int columns)
 	{
 		Rows = rows;
 		Columns = columns;
@@ -93,19 +96,19 @@ class Matrix::Cref
 	friend class Matrix;
 	Matrix& m;
 	unsigned int row, col;
-	public:
-		operator double()
-		{
-			return m.read(row, col);
-		};	
-		Matrix::Cref& operator= (double num)
-		{
-			m.write(row, col, num);
-			return *this;
-		};
-		Cref(Matrix &m, unsigned int a, unsigned int b): m(m), row(a), col(b)
-		{
-		};
+public:
+	operator double()
+	{
+		return m.read(row, col);
+	};	
+	Matrix::Cref& operator= (double num)
+	{
+		m.write(row, col, num);
+		return *this;
+	};
+	Cref(Matrix &m, unsigned int a, unsigned int b): m(m), row(a), col(b)
+	{
+	};
 };
 
 void Matrix::check (unsigned int row, unsigned int col)
@@ -136,7 +139,7 @@ Matrix::Matrix()
 	data = new CMatrix(0,0);
 }
 
-Matrix::Matrix(unsigned int rows, unsigned int columns)
+Matrix::Matrix( int rows, int columns)
 {
 	data = new CMatrix(rows, columns);
 }
@@ -262,7 +265,7 @@ ostream & operator << (ostream & s, const Matrix & m)
 	if(m.data->Rows == 0 || m.data->Columns == 0)
 		throw Wrong_Dimmension();
 		
-	s << endl << "[";
+	s << endl;
 	
 	for(unsigned int r=0; r<m.data->Rows; r++)
 	{
@@ -270,16 +273,14 @@ ostream & operator << (ostream & s, const Matrix & m)
 		{
 			s << m.data->matrix[r][c];
 			if(c != m.data->Columns - 1)
-				s << " ";
+				s << "      ";
 		}	
 		
-		if(r == m.data->Rows - 1)
-			s << "]";
 			
 		s << endl;	
 	}
 	
-	s << endl;
+	
 	
 	return s;
 }

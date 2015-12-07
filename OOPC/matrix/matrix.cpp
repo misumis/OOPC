@@ -9,13 +9,12 @@ int main()
 	try
 	{
 	 Matrix a(3,3), b(3,3), c(4,4), d(1,1);
-        cout << "a " << a << " b " << b << " c " << c << " d " << d << endl << endl;
-        
+
        for(unsigned int i = 0; i < 3; i++)
         	for(unsigned int j = 0; j < 3; j++)
         	{
-        		a(i,j) = i+j;
-        		b(i,j) = 3;
+        		a(i,j) = i+j+4;
+        		b(i,j) = 1;
         	}
         	
         cout << "a " << a << " b " << b << endl << endl;
@@ -24,15 +23,11 @@ int main()
         cout << "a(0,0) = " << a(0,0) << endl << endl;	
        	
         d = a;
-        cout << "d = a " << d << endl;
+        cout << "d = a :" << d << endl;
         if(d == a)
-                cout << "d equals to a" << endl;
+                cout << "d = a :"<< d << endl;
         d = b;
-        cout << "d = b " << d << endl;
-        if(d == a)
-                cout << "d equals to a" << endl;
-        else if (d == b)
-                cout << "d equals to b" << endl;
+        cout << "d = b : " << d << endl;
                 
        
         d = a + b;
@@ -54,28 +49,22 @@ int main()
         cout << "c = a * b " << c << endl;
         c *= b;
         cout << "c *= b " << c << endl;
-      
-        
-        c = a - b;
-        cout << "c = a - b " << c << endl;
-        c -= b;
-        cout << "c -= b " << c << endl;
 
 
         fstream file;
 		file.open("matrix.dat", fstream::in);
 		Matrix e(file);								
-		cout << e << endl;
+		cout << "Data from matrix.dat file: "<< e << endl;
 		file.close();
         
 	}
 	catch(Out_Of_Range&)
 	{
-		cout << "Index Out of Range" << endl;
+		cout << "Out of Range" << endl;
 	}
 	catch(Wrong_Dimmension&)
 	{
-		cout << "Wrong Matrix Dimensions" << endl;
+		cout << "Wrong Dimensions" << endl;
 	}
 	catch(Bad_Alloc&)
 	{
