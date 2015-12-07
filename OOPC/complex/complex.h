@@ -8,26 +8,25 @@ class Complex
 	private:
 		double Real, Imag;
 	public:
-		
 		Complex (double Real, double Imag);
 		Complex & operator= (const Complex & s);
 		Complex operator- () const;
 		Complex & operator= (double co);
 		Complex operator+ (const Complex& co) const;
-		Complex & operator-= (Complex co);
-		Complex & operator+= (Complex co);
-		friend Complex operator / (Complex c1, Complex c2);
-		friend Complex operator * (Complex c1, Complex c2);
-		friend Complex operator- (Complex, Complex);
+		Complex & operator-= (const Complex& co);
+		Complex & operator+= (const Complex& co);
+		friend Complex operator / (const Complex& c1,const Complex& c2);
+		friend Complex operator * (const Complex& c1,const Complex& c2);
+		friend Complex operator - (Complex, Complex);
 		friend ostream & operator << (ostream & s, const Complex & c);
 		double getReal(void);
 		double getImaginary(void);
 		double amplitude(void);
 		double phase(void);
 		Complex conjugate(void);
-		Complex& operator *= (Complex s2);
-		Complex& operator/=(Complex co);
-		bool operator == (Complex co);
+		Complex& operator *= (const Complex& s2);
+		Complex& operator/=(const Complex& co);
+		bool operator == (const Complex& co);
 	
 };
 double Complex::getReal(void)
@@ -48,12 +47,12 @@ inline Complex operator - (Complex c1, Complex c2)
 	Complex temp (c1);
 	return temp -= c2;
 }
-Complex operator * (Complex c1, Complex c2)
+Complex operator * (const Complex& c1,const Complex& c2)
 {
 	Complex temp(c1);
 	return temp*=c2;
 }
-Complex operator / (Complex c1, Complex c2)
+Complex operator / (const Complex& c1,const Complex& c2)
 {
 	Complex temp(c1);
 	return temp /= c2;
@@ -87,33 +86,33 @@ Complex Complex::operator- () const
 {
 		return Complex(-Real,-Imag);
 };
-Complex & Complex::operator-= (Complex co)
+Complex & Complex::operator-= (const Complex& co)
 {
 		Real -= co.Real;
 		Imag -= co.Imag;
 		return *this;
 };
-Complex & Complex::operator+= (Complex co)
+Complex & Complex::operator+= (const Complex& co)
 {
 		Real += co.Real;
 		Imag += co.Imag;
 		return *this;
 };
-Complex& Complex::operator/=(Complex co)
+Complex& Complex::operator/=(const Complex& co)
 {
-		double result1, result2, denom ;
-		denom = ((co.Real * co.Real) + (co.Imag * co.Imag));
-		result1 = ((Real * co.Real) + (Imag * co.Imag)) / denom;
-		result2 = ((Imag * co.Real) - (Real * co.Imag)) / denom;
+		double result1, result2, demon ;
+		demon = ((co.Real * co.Real) + (co.Imag * co.Imag));
+		result1 = ((Real * co.Real) + (Imag * co.Imag)) / demon;
+		result2 = ((Imag * co.Real) - (Real * co.Imag)) / demon;
 		Real = result1;
 		Imag = result2;
 		return *this;
 }
-Complex& Complex::operator *= (Complex c2)
+Complex& Complex::operator *= (const Complex& c2)
 {
 		double tmpReal, tmpImag;
-		tmpReal = Real*c2.getReal()-Imag*c2.getImaginary();
-		tmpImag = Real*c2.getImaginary() + c2.getReal()*Imag;
+		tmpReal = Real*c2.Real-Imag*c2.Imag;
+		tmpImag = Real*c2.Imag + c2.Real*Imag;
 		Real = tmpReal;
 		Imag = tmpImag;
 		return * this;    
@@ -121,6 +120,10 @@ Complex& Complex::operator *= (Complex c2)
 double Complex::phase(void)
 {
 		double phase = ((atan(Imag / Real))*180/M_PI);
+		if(Real==0)
+		{
+			return M_PI;
+		}
 		if(Real<0)
 		{
 			phase+=180;
@@ -136,9 +139,9 @@ Complex Complex::conjugate(void)
 		Complex temp (Real, -Imag);
 		return temp;
 };
-bool Complex::operator == (Complex co)
+bool Complex::operator == (const Complex& co)
 {
-		if(Real == co.getReal() && Imag == co.getImaginary())
+		if(Real == co.Real && Imag == co.Imag)
 		{
 				return true;
 		}
